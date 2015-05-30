@@ -10,8 +10,7 @@ requirejs.config({
     }
 });
 
-
-
+//requirejs(['src/regeca-main']);
 
 define("main", function(){});
 

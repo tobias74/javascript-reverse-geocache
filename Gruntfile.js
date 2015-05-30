@@ -36,7 +36,6 @@ module.exports = function(grunt) {
         paths: {
           'appFiles': './src'
         },
-        removeCombined: true,
         out: './dist/built.js',
         optimize: 'none',
         name: 'main'
