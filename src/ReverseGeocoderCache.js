@@ -1,4 +1,3 @@
-'use strict';
 
 define(function(){
   var ReverseGeocoderCache = function(options){
@@ -18,7 +17,7 @@ define(function(){
       return this.options.tileBasedCache.get(lat,lng);
     }
     else {
-      var data = this.options.dataProvider.retrieveData(lat,lng);
+      $data = this.options.dataProvider.retrieveData(lat,lng);
       this.options.tileBasedCache.set(lat,lng,data);
       return data;
     }

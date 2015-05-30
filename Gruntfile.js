@@ -31,22 +31,13 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       }
     },
-    concat: {
-      options: {
-        separator: ';',
-      },
-      dist: {
-        src: ['src/**/*.js'],
-        dest: 'dist/built.js',
-      },
-    },
     requirejs: {
       options: {
         paths: {
           'appFiles': './src'
         },
         removeCombined: true,
-        out: './dist/requirejs/all-combined.js',
+        out: './dist/built.js',
         optimize: 'none',
         name: 'main'
       },
@@ -60,7 +51,7 @@ module.exports = function(grunt) {
           optimize:'none'
         }
       }
-    }    
+    }   
   });
 
   grunt.loadNpmTasks('grunt-contrib-jasmine');
