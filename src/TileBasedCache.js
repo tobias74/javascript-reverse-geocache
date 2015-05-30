@@ -1,5 +1,5 @@
 
-define(function(){
+(function(ReverseGeocoderCache){
   var TileBasedCache = function(options){
     this.options = {};
     this.options.cache = options.cache;
@@ -65,8 +65,7 @@ define(function(){
     }
   };
 
-
-  return TileBasedCache;  
-});
+  ReverseGeocoderCache.TileBasedCache = TileBasedCache;
+})(window.ReverseGeocoderCache = window.ReverseGeocoderCache || {});
 
 

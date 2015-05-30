@@ -1,32 +1,27 @@
 
+describe("ReverseGeocoderCache", function() {
 
+  var reverseGeocoderCache;
+  
+  beforeEach(function() {
+    reverseGeocoderCache = new ReverseGeocoderCache.Client();
 
-define(['src/ReverseGeocoderCache'],function(ReverseGeocoderCache){
-  describe("ReverseGeocoderCache", function() {
+  });
 
-    var reverseGeocoderCache;
+  it("it should be able to hello world in heree", function() {
+    expect(0).toEqual(0);
+
+    //expect(reverseGeocoderCache.sayHello()).toEqual('hello');
     
-    beforeEach(function() {
-      reverseGeocoderCache = new ReverseGeocoderCache();
+    //demonstrates use of custom matcher
+  });
   
-    });
-  
-    it("it should be able to hello world in heree", function() {
-      expect(0).toEqual(0);
-  
-      //expect(reverseGeocoderCache.sayHello()).toEqual('hello');
-      
-      //demonstrates use of custom matcher
-    });
-    
-    it("22222it should be able to hello world in heree", function() {
-      expect(0).toEqual(0);
-  
-      expect(reverseGeocoderCache.sayHello()).toEqual('hello');
-      
-      //demonstrates use of custom matcher
-    });
-  
-  });  
-});
+  it("22222it should be able to hello world in heree", function() {
+    expect(0).toEqual(0);
 
+    expect(reverseGeocoderCache.sayHello()).toEqual('hello');
+    
+    //demonstrates use of custom matcher
+  });
+
+});  

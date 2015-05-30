@@ -1,18 +1,18 @@
 
-define(function(){
-  var ReverseGeocoderCache = function(options){
+(function(ReverseGeocoderCache){
+  var Client = function(options){
     options = options || {};
     this.options = {};
     this.options.tileBasedCache = options.tileBasedCache || {};
     this.options.dataProvider = options.dataProvider || {};
   };
   
-  ReverseGeocoderCache.prototype.sayHello = function(){
+  Client.prototype.sayHello = function(){
     return "hello";
   };
 
 
-  ReverseGeocoderCache.prototype.get = function(lat,lng){
+  Client.prototype.get = function(lat,lng){
     if (this.options.tileBasedCache.exists(lat,lng)){
       return this.options.tileBasedCache.get(lat,lng);
     }
@@ -23,5 +23,6 @@ define(function(){
     }
   };
 
-  return ReverseGeocoderCache;
-});
+  ReverseGeocoderCache.Client = Client;
+  
+})(window.ReverseGeocoderCache = window.ReverseGeocoderCache || {});

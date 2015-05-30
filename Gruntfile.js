@@ -7,20 +7,17 @@ module.exports = function(grunt) {
       src : 'src/**/*.js',
       options : {
         specs : 'spec/**/*.js',
-        template: require('grunt-template-jasmine-requirejs'),
-        /*
-        templateOptions: {
-          requireConfig: {
-            baseUrl: 'lib',
-            paths: {
-                app: './src'
-            }
-            
-          } 
-        }
-          */    
       }
     },
+    concat: {
+      options: {
+        separator: ';',
+      },
+      dist: {
+        src: ['src/**/*.js'],
+        dest: 'dist/built.js',
+      },
+    },    
     jshint: {
       all: [
         'Gruntfile.js',
@@ -30,27 +27,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       }
-    },
-    requirejs: {
-      options: {
-        paths: {
-          'appFiles': './src'
-        },
-        out: './dist/built.js',
-        optimize: 'none',
-        name: 'main'
-      },
-      dev:{
-        options:{
-          optimize:'none'
-        }
-      },
-      release:{
-        options:{
-          optimize:'none'
-        }
-      }
-    }   
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jasmine');
