@@ -1,8 +1,7 @@
 'use strict';
 
 
-describe("ReverseGeocoderCache", function() {
-  
+define(['src/ReverseGeocoderCache'],function(ReverseGeocoderCache){
   var reverseGeocoderCache;
   
   beforeEach(function() {
@@ -17,5 +16,5 @@ describe("ReverseGeocoderCache", function() {
     
     //demonstrates use of custom matcher
   });
-
 });
+

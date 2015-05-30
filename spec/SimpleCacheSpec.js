@@ -1,23 +1,29 @@
 'use strict';
 
-
-describe("SimpleCache", function() {
-  
-  var simpleCache;
-  
-  beforeEach(function() {
-    simpleCache = new SimpleCache();
-
-    //player = new Player();
-    //song = new Song();
-  });
-
-  it("should be able to store a value", function() {
-    simpleCache.set('myKey','myValue');
-
-    expect(simpleCache.get('myKey')).toEqual('myValue');
+define(['src/caches/SimpleCache'],function(SimpleCache){
+  describe("SimpleCache", function() {
     
-    //demonstrates use of custom matcher
+    var simpleCache;
+    
+    beforeEach(function() {
+      simpleCache = new SimpleCache();
+  
+      //player = new Player();
+      //song = new Song();
+    });
+  
+    it("should be able to store a value", function() {
+      simpleCache.set('myKey','myValue');
+  
+      expect(simpleCache.get('myKey')).toEqual('myValue');
+      
+      //demonstrates use of custom matcher
+    });
+  
   });
-
 });
+
+
+
+
+

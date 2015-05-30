@@ -1,0 +1,29 @@
+{
+  "name": "reverse-geocoder-cache",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tobias74/javascript-reverse-geocache",
+  "authors": [
+    "Tobias Gassmann <tobias@gaszmann.de>"
+  ],
+  "description": "Cache for results of a reverse geocoder",
+  "main": "dist/built.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "reverse",
+    "geocoder",
+    "cache"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.18"
+  }
+}

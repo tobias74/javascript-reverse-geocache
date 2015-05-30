@@ -1,5 +1,5 @@
 
-(function(context){
+define(function(){
   var ReverseGeocoderCache = function(options){
     options = options || {};
     this.options = {};
@@ -22,13 +22,6 @@
       return data;
     }
   };
-  
-  
-  
-  context.ReverseGeocoderCache = ReverseGeocoderCache;
-})(window);
 
-
-
-
-
+  return ReverseGeocoderCache;
+});
