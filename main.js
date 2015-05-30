@@ -34,7 +34,3 @@ requirejs(["ReverseGeocoderCache", "TileBasedCache", "caches/SimpleCache"], func
   alert(reverseGeocoderCache.get(20, 20));
 });
 
-
-// Start loading the main app file. Put all of
-// your application logic in there.
-//requirejs(['src/regeca-main']);
