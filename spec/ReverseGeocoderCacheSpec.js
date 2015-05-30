@@ -8,11 +8,9 @@ describe("ReverseGeocoderCache", function() {
   beforeEach(function() {
     reverseGeocoderCache = new ReverseGeocoderCache();
 
-    //player = new Player();
-    //song = new Song();
   });
 
-  it("should be able to play a Song", function() {
+  it("it should be able to hello world", function() {
     expect(0).toEqual(0);
 
     expect(reverseGeocoderCache.sayHello()).toEqual('hello');

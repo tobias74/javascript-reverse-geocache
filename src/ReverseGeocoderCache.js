@@ -3,7 +3,7 @@
   var ReverseGeocoderCache = function(options){
     options = options || {};
     this.options = {};
-    this.options.cache = options.cache || {};
+    this.options.tileBasedCache = options.tileBasedCache || {};
     this.options.dataProvider = options.dataProvider || {};
   };
   
@@ -13,12 +13,12 @@
 
 
   ReverseGeocoderCache.prototype.get = function(lat,lng){
-    if (this.options.cache.exists(lat,lng)){
-      return this.options.cache.get(lat,lng);
+    if (this.options.tileBasedCache.exists(lat,lng)){
+      return this.options.tileBasedCache.get(lat,lng);
     }
     else {
       $data = this.options.dataProvider.retrieveData(lat,lng);
-      this.options.cache.set(lat,lng,data);
+      this.options.tileBasedCache.set(lat,lng,data);
       return data;
     }
   };
@@ -27,6 +27,8 @@
   
   context.ReverseGeocoderCache = ReverseGeocoderCache;
 })(window);
+
+
 
 
 

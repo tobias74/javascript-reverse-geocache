@@ -7,7 +7,6 @@
     this.options.tileSize = options.tileSize;
     
     this.EARTH_RADIUS = 6371000;
-    this.PI = 3.14159265359;
 
   };
   
@@ -23,13 +22,14 @@
 
   TileBasedCache.prototype.get = function(lat,lng){
     var key = this.getCacheKey(lat,lng);
-    this.options.cache.get(key);
+    return this.options.cache.get(key);
   };
   
   TileBasedCache.prototype.exists = TileBasedCache.prototype.get;
 
   
   TileBasedCache.prototype.getCacheKey = function(lat,lng){
+    
    var keySizeRadians = this.getRadiansByDistance( this.options.tileSize ); 
    var latitudeRadians = this.getRadiansByDegree(lat);
    var longitudeRadians = this.getRadiansByDegree(lng);
@@ -44,7 +44,7 @@
   };
   
   TileBasedCache.prototype.getRadiansByDegree = function(degree){
-    return (this.PI/180)*degree;
+    return (Math.PI/180)*degree;
   };
 
   TileBasedCache.prototype.getRadiansByDistance = function(distance){
@@ -57,7 +57,7 @@
 
   TileBasedCache.prototype.getLongitudeKeyLength = function(lat){
     var operand = (2*Math.sin(this.getRadiansKeySize()/2)) / Math.cos(this.getRadiansByDegree(lat));
-    if (operand > this.PI/2){
+    if (operand > Math.PI/2){
       return 1;
     }
     else {

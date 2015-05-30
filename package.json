@@ -19,9 +19,12 @@
     "url": "https://github.com/jsoverson/grunt-contrib-jasmine-example/issues"
   },
   "devDependencies": {
-    "grunt-contrib-jasmine": "~0.4.0",
-    "grunt": "~0.4.0",
-    "grunt-contrib-jshint": "~0.2.0"
+    "grunt": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jasmine": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-requirejs": "*",
+    "grunt-template-jasmine-requirejs": "*"
   },
   "dependencies": {}
 }
