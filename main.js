@@ -4,10 +4,10 @@
 // except for 'app' ones, which are in a sibling
 // directory.
 requirejs.config({
-    baseUrl: 'lib',
+    baseUrl: 'src',
     paths: {
         app: './src'
     }
 });
 
-requirejs(['src/regeca-main']);
+//requirejs(['src/regeca-main']);
