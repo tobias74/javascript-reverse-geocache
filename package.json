@@ -24,7 +24,8 @@
     "grunt-contrib-jasmine": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-requirejs": "*",
-    "grunt-template-jasmine-requirejs": "*"
+    "grunt-template-jasmine-requirejs": "*",
+    "grunt-contrib-watch": "~0.6.1"
   },
   "dependencies": {}
 }

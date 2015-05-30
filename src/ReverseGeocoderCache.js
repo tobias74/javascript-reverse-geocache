@@ -14,13 +14,27 @@
     
     this.get = function(lat,lng,callback){
       if (self.options.tileBasedCache.exists(lat,lng)){
-        callback(self.options.tileBasedCache.get(lat,lng));
+        var data = JSON.parse(self.options.tileBasedCache.get(lat,lng));
+        if (data.status == 'OK'){
+          callback(data.content);
+        }
+        else {
+          callback(null);
+        }
       }
       else {
         self.options.dataProvider.retrieveData(lat, lng, function(data){
-          self.options.tileBasedCache.set(lat,lng,data);
-          
-          callback(data);      
+          if (data.status === 'OK'){
+            self.options.tileBasedCache.set(lat,lng,JSON.stringify(data));
+            callback(data.content);      
+          }
+          else if (data.status === 'DONT_REPEAT'){
+            self.options.tileBasedCache.set(lat,lng,JSON.stringify(data));
+            callback(null);
+          }
+          else {
+            callback(null);
+          }
         });
       }
     };

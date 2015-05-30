@@ -14,13 +14,27 @@
     
     this.get = function(lat,lng,callback){
       if (self.options.tileBasedCache.exists(lat,lng)){
-        callback(self.options.tileBasedCache.get(lat,lng));
+        var data = JSON.parse(self.options.tileBasedCache.get(lat,lng));
+        if (data.status == 'OK'){
+          callback(data.content);
+        }
+        else {
+          callback(null);
+        }
       }
       else {
         self.options.dataProvider.retrieveData(lat, lng, function(data){
-          self.options.tileBasedCache.set(lat,lng,data);
-          
-          callback(data);      
+          if (data.status === 'OK'){
+            self.options.tileBasedCache.set(lat,lng,JSON.stringify(data));
+            callback(data.content);      
+          }
+          else if (data.status === 'DONT_REPEAT'){
+            self.options.tileBasedCache.set(lat,lng,JSON.stringify(data));
+            callback(null);
+          }
+          else {
+            callback(null);
+          }
         });
       }
     };
@@ -105,6 +119,28 @@
 (function(){
   ReverseGeocoderCache.Cache = ReverseGeocoderCache.Cache || {};
   
+  var LocalStorage = function(){
+    var self = this;
+
+    this.get = function(key){
+      return localStorage.getItem(key);
+    };
+
+    this.set = function(key, value){
+      localStorage.setItem(key,value);
+    };
+    
+  };
+  
+  
+  ReverseGeocoderCache.Cache.LocalStorage = LocalStorage;
+
+})(window.ReverseGeocoderCache = window.ReverseGeocoderCache || {});
+
+;
+(function(){
+  ReverseGeocoderCache.Cache = ReverseGeocoderCache.Cache || {};
+  
   var SimpleCache = function(){
     this.cache = {};
   };
@@ -119,6 +155,46 @@
   };
   
   ReverseGeocoderCache.Cache.SimpleCache = SimpleCache;
+
+})(window.ReverseGeocoderCache = window.ReverseGeocoderCache || {});
+
+;
+(function(){
+  ReverseGeocoderCache.DataProvider = ReverseGeocoderCache.DataProvider || {};
+  
+  var GoogleGeocoder = function(){
+    var self = this;
+
+    this.retrieveData = function(lat,lng,callback){
+      var geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode({
+        latLng: new google.maps.LatLng(lat, lng)
+      }, function(results, status){
+        if (status == 'OK'){
+          callback({
+            status: 'OK',
+            content: results[0].formatted_address  
+          });
+        }
+        else if (status == 'ZERO_RESULTS'){
+          callback({
+            status: 'DONT_REPEAT'
+          });
+        }
+        else {
+          console.debug('google geocoder error status: ' + status);
+          callback({
+            status: 'ERROR'
+          });
+        }
+      });
+
+    };
+
+  };
+  
+  ReverseGeocoderCache.DataProvider.GoogleGeocoder = GoogleGeocoder;
 
 })(window.ReverseGeocoderCache = window.ReverseGeocoderCache || {});
 
