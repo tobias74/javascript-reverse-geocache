@@ -1,26 +1,30 @@
 
 (function(ReverseGeocoderCache){
   var Client = function(options){
+    var self = this;
+    
     options = options || {};
     this.options = {};
     this.options.tileBasedCache = options.tileBasedCache || {};
     this.options.dataProvider = options.dataProvider || {};
-  };
+    
+    this.sayHello = function(){
+      return "hello";
+    };
+    
+    this.get = function(lat,lng,callback){
+      if (self.options.tileBasedCache.exists(lat,lng)){
+        callback(self.options.tileBasedCache.get(lat,lng));
+      }
+      else {
+        self.options.dataProvider.retrieveData(lat, lng, function(data){
+          self.options.tileBasedCache.set(lat,lng,data);
+          
+          callback(data);      
+        });
+      }
+    };
   
-  Client.prototype.sayHello = function(){
-    return "hello";
-  };
-
-
-  Client.prototype.get = function(lat,lng){
-    if (this.options.tileBasedCache.exists(lat,lng)){
-      return this.options.tileBasedCache.get(lat,lng);
-    }
-    else {
-      data = this.options.dataProvider.retrieveData(lat,lng);
-      this.options.tileBasedCache.set(lat,lng,data);
-      return data;
-    }
   };
 
   ReverseGeocoderCache.Client = Client;
